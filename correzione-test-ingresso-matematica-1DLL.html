@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Correzione del test di ingresso - Matematica - 1DLL</title>
+  <meta name="description" content="Correzione guidata e svolgimenti del test di ingresso di matematica della classe 1DLL, Liceo Monti di Chieri, anno scolastico 2026-27.">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eef3f6;
+      --paper: #ffffff;
+      --ink: #17232b;
+      --muted: #536671;
+      --line: #cedae0;
+      --brand: #075d68;
+      --brand-strong: #03444d;
+      --accent: #b9552b;
+      --soft: #e5f3f4;
+      --warm: #fff3e7;
+      --ok: #246b45;
+      --ok-soft: #e7f5ec;
+      --shadow: 0 14px 38px rgba(28, 55, 65, .10);
+      --radius: 18px;
+    }
+
+    body.dark-mode {
+      color-scheme: dark;
+      --bg: #0d171c;
+      --paper: #16242b;
+      --ink: #f3f7f8;
+      --muted: #b6c7ce;
+      --line: #3c535e;
+      --brand: #68d2d8;
+      --brand-strong: #a8eef1;
+      --accent: #ffad7c;
+      --soft: #18383d;
+      --warm: #3a2c24;
+      --ok: #8bd3a9;
+      --ok-soft: #173629;
+      --shadow: 0 14px 38px rgba(0, 0, 0, .28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      line-height: 1.58;
+      transition: background .2s ease, color .2s ease;
+    }
+    button, a { font: inherit; }
+    button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 50;
+      top: 8px;
+      left: 8px;
+      transform: translateY(-160%);
+      padding: 9px 13px;
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .page { width: min(1120px, calc(100% - 32px)); margin: 28px auto 54px; }
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 6vw, 62px);
+      border-radius: 26px;
+      background: linear-gradient(135deg, #064f5a, #087985);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -115px;
+      width: 330px;
+      height: 330px;
+      border: 50px solid rgba(255,255,255,.09);
+      border-radius: 50%;
+    }
+    .eyebrow { font-size: .82rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 9px 0 12px; font-size: clamp(2rem, 5vw, 4.2rem); line-height: 1.02; }
+    header p { max-width: 740px; margin: 0 0 22px; font-size: 1.08rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: 9px; position: relative; z-index: 1; }
+    .chip {
+      padding: 6px 11px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .toolbar {
+      position: sticky;
+      z-index: 20;
+      top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 16px 0 22px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    button, .source-link {
+      min-height: 44px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    button:hover, .source-link:hover { border-color: var(--brand); background: var(--soft); }
+    button[aria-pressed="true"] { border-color: var(--brand); background: var(--brand); color: var(--paper); }
+    .nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .nav a {
+      padding: 10px 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--brand-strong);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .nav a:hover { background: var(--soft); }
+    .intro, .exercise, .footer-card {
+      min-width: 0;
+      margin: 0 0 20px;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .intro-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    .box {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      padding: 16px 18px;
+      border-left: 5px solid var(--brand);
+      border-radius: 10px;
+      background: var(--soft);
+    }
+    .box.warm { border-left-color: var(--accent); background: var(--warm); }
+    .box p:last-child { margin-bottom: 0; }
+    .kicker { color: var(--accent); font-size: .82rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    h2 { margin: 5px 0 7px; color: var(--brand-strong); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.15; }
+    h3 { margin: 22px 0 8px; color: var(--brand-strong); font-size: 1.08rem; }
+    p { margin: 8px 0 14px; }
+    .prompt { color: var(--muted); font-style: italic; }
+    .answer-line {
+      margin: 16px 0;
+      padding: 13px 16px;
+      border: 1px solid color-mix(in srgb, var(--ok) 50%, var(--line));
+      border-radius: 11px;
+      background: var(--ok-soft);
+      color: var(--ok);
+      font-weight: 800;
+    }
+    .steps { counter-reset: passaggio; margin: 12px 0; padding: 0; list-style: none; }
+    .steps > li {
+      position: relative;
+      min-height: 38px;
+      margin: 10px 0;
+      padding-left: 48px;
+    }
+    .steps > li::before {
+      counter-increment: passaggio;
+      content: counter(passaggio);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--brand);
+      color: var(--paper);
+      font-weight: 900;
+    }
+    .math-block {
+      overflow-x: auto;
+      margin: 12px 0;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: var(--soft);
+      text-align: center;
+      font-size: 1.08rem;
+    }
+    details {
+      margin-top: 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+    }
+    summary {
+      padding: 13px 16px;
+      color: var(--brand-strong);
+      cursor: pointer;
+      font-weight: 900;
+    }
+    details > .detail-body { padding: 0 18px 18px; }
+    .table-wrap { width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; min-width: 520px; }
+    caption { margin-bottom: 8px; text-align: left; font-weight: 800; }
+    th, td { padding: 10px 12px; border: 1px solid var(--line); text-align: center; }
+    th { background: var(--soft); color: var(--brand-strong); }
+    td:first-child, th:first-child { text-align: left; }
+    .yes { color: var(--ok); font-weight: 900; }
+    .no { color: var(--muted); }
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .mini-card { padding: 4px 16px 14px; border: 1px solid var(--line); border-radius: 12px; }
+    .verbal {
+      margin-top: 12px;
+      padding: 11px 14px;
+      border: 1px dashed var(--accent);
+      border-radius: 9px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+    .dsa-only { display: none; }
+    body.dsa-mode {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 19px;
+      line-height: 1.82;
+      letter-spacing: .025em;
+      word-spacing: .08em;
+    }
+    body.dsa-mode .page { width: min(980px, calc(100% - 28px)); }
+    body.dsa-mode .two-col, body.dsa-mode .intro-grid { grid-template-columns: 1fr; }
+    body.dsa-mode .dsa-only { display: block; }
+    body.dsa-mode .exercise p { max-width: 72ch; }
+    footer { color: var(--muted); }
+    .footer-card { font-size: .92rem; }
+    .footer-card strong { color: var(--ink); }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 20px, 1120px); margin-top: 10px; }
+      .nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .two-col, .intro-grid { grid-template-columns: 1fr; }
+      header { border-radius: 18px; }
+      .toolbar { position: static; }
+      table { min-width: 0; font-size: .8rem; }
+      th, td { padding: 7px 5px; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 13mm; }
+      :root, body.dark-mode {
+        color-scheme: light;
+        --bg: #fff;
+        --paper: #fff;
+        --ink: #000;
+        --muted: #333;
+        --line: #8f9aa0;
+        --brand: #075d68;
+        --brand-strong: #03444d;
+        --accent: #8b3d1d;
+        --soft: #eef7f7;
+        --warm: #fff5ea;
+        --ok: #164f31;
+        --ok-soft: #edf8f1;
+      }
+      body { font-size: 10.5pt; background: #fff; }
+      .page { width: 100%; margin: 0; }
+      header { padding: 18px 20px; border-radius: 0; box-shadow: none; print-color-adjust: exact; }
+      h1 { font-size: 25pt; }
+      .toolbar, .nav, .skip-link { display: none !important; }
+      .intro, .exercise, .footer-card { padding: 16px; border-radius: 0; box-shadow: none; break-inside: avoid; }
+      details { break-inside: avoid; }
+      details:not([open]) > *:not(summary) { display: block; }
+      summary { list-style: none; }
+      summary::-webkit-details-marker { display: none; }
+      .detail-body { display: block !important; }
+      .two-col { gap: 10px; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'local' }
+    };
+    function formulaFallback() {
+      document.querySelectorAll('[data-fallback]').forEach(function (element) {
+        element.textContent = element.dataset.fallback;
+      });
+    }
+  </script>
+  <script defer onerror="formulaFallback()" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai agli svolgimenti</a>
+  <div class="page">
+    <header>
+      <div class="eyebrow">Liceo Monti di Chieri · anno scolastico 2026-27</div>
+      <h1>Correzione del test di ingresso</h1>
+      <p>Non una lista di risultati: ricostruiamo il ragionamento, controlliamo i passaggi e riconosciamo le idee matematiche che useremo durante l’anno.</p>
+      <div class="meta">
+        <span class="chip">Classe 1DLL</span>
+        <span class="chip">Liceo linguistico</span>
+        <span class="chip">Matematica</span>
+        <span class="chip">Correzione guidata</span>
+        <span class="chip">8 esercizi</span>
+      </div>
+    </header>
+
+    <div class="toolbar" role="group" aria-label="Controlli della pagina">
+      <button id="dark-toggle" type="button" aria-pressed="false">DARK</button>
+      <button id="dsa-toggle" type="button" aria-pressed="false">DSA/BES</button>
+      <button id="open-all" type="button">Mostra tutti gli svolgimenti</button>
+      <button id="close-all" type="button">Nascondi gli svolgimenti</button>
+      <button id="print-page" type="button">Stampa la correzione</button>
+      <a class="source-link" href="TestIngresso.pdf">Apri il test originale</a>
+      <span id="status" role="status" aria-live="polite"></span>
+    </div>
+
+    <nav class="nav" aria-label="Indice degli esercizi">
+      <a href="#es1">1 · Ordine</a>
+      <a href="#es2">2 · Divisori</a>
+      <a href="#es3">3 · Frazioni</a>
+      <a href="#es4">4 · Potenze</a>
+      <a href="#es5">5 · Problema</a>
+      <a href="#es6">6 · Pitagora</a>
+      <a href="#es7">7 · Percentuali</a>
+      <a href="#es8">8 · Vero o falso</a>
+    </nav>
+
+    <main id="contenuto">
+      <section class="intro" aria-labelledby="come-usare">
+        <div class="intro-grid">
+          <div>
+            <div class="kicker">Prima di cominciare</div>
+            <h2 id="come-usare">Come usare questa correzione</h2>
+            <ol class="steps">
+              <li>Riprendi il tuo tentativo e individua il primo passaggio diverso.</li>
+              <li>Apri lo svolgimento e segui il criterio, non soltanto il risultato.</li>
+              <li>Scrivi in una frase quale idea vuoi ricordare per la prossima volta.</li>
+            </ol>
+          </div>
+          <div class="box warm">
+            <h3 style="margin-top:0">Obiettivo</h3>
+            <p>Riconoscere i prerequisiti già solidi e quelli da riprendere: numeri razionali, divisibilità, calcolo, potenze, problemi e percentuali.</p>
+            <p><strong>Il test serve a orientare il lavoro:</strong> un errore ci dice dove intervenire.</p>
+          </div>
+        </div>
+      </section>
+
+      <article class="exercise" id="es1">
+        <div class="kicker">Esercizio 1 · Numeri razionali</div>
+        <h2>Mettere i numeri in ordine crescente</h2>
+        <p class="prompt">Ordina: \(-\frac{5}{6}\), \(+3\), \(+\frac{13}{4}\), \(-\frac{9}{3}\), \(-\frac{7}{2}\), \(-\frac{1}{2}\), \(+2{,}5\), \(-\frac{2}{3}\), \(-0{,}6\), \(+\frac{7}{3}\).</p>
+        <div class="answer-line">Risultato: dal numero più negativo al numero più positivo.</div>
+        <details class="solution">
+          <summary>Apri lo svolgimento</summary>
+          <div class="detail-body">
+            <ol class="steps">
+              <li>Trasformiamo temporaneamente le frazioni in numeri decimali, oppure confrontiamole con frazioni equivalenti.</li>
+              <li>Ricordiamo che tra due numeri negativi è minore quello che ha valore assoluto maggiore.</li>
+              <li>Ordiniamo prima i negativi e poi i positivi.</li>
+            </ol>
+            <div class="math-block" data-fallback="-3,5; -3; circa -0,833; circa -0,667; -0,6; -0,5; circa 2,333; 2,5; 3; 3,25">
+              \[
+              -\frac{7}{2}=-3{,}5,\quad -\frac{9}{3}=-3,\quad -\frac{5}{6}\approx-0{,}833,\quad -\frac{2}{3}\approx-0{,}667,
+              \]
+              \[
+              -0{,}6,\quad -\frac{1}{2}=-0{,}5,\quad \frac{7}{3}\approx2{,}333,\quad 2{,}5,\quad 3,\quad \frac{13}{4}=3{,}25.
+              \]
+            </div>
+            <div class="math-block" data-fallback="-7/2 < -9/3 < -5/6 < -2/3 < -0,6 < -1/2 < 7/3 < 2,5 < 3 < 13/4">
+              \[
+              \boxed{-\frac{7}{2}<-\frac{9}{3}<-\frac{5}{6}<-\frac{2}{3}<-0{,}6<-\frac{1}{2}<\frac{7}{3}<2{,}5<3<\frac{13}{4}}
+              \]
+            </div>
+            <p class="verbal"><strong>Lettura:</strong> procediamo da sinistra verso destra, dal valore più piccolo al più grande. Lo zero separerebbe i negativi dai positivi.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="exercise" id="es2">
+        <div class="kicker">Esercizio 2 · Divisibilità</div>
+        <h2>Riconoscere i divisori</h2>
+        <p class="prompt">Per ciascuno dei numeri 35, 60, 105 e 210, indica quali tra 2, 3, 4, 5, 6 e 7 sono divisori.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Tabella completata</caption>
+            <thead><tr><th>Numero</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr></thead>
+            <tbody>
+              <tr><th>35</th><td class="no">-</td><td class="no">-</td><td class="no">-</td><td class="yes">✓</td><td class="no">-</td><td class="yes">✓</td></tr>
+              <tr><th>60</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">-</td></tr>
+              <tr><th>105</th><td class="no">-</td><td class="yes">✓</td><td class="no">-</td><td class="yes">✓</td><td class="no">-</td><td class="yes">✓</td></tr>
+              <tr><th>210</th><td class="yes">✓</td><td class="yes">✓</td><td class="no">-</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="solution">
+          <summary>Apri criteri e controlli</summary>
+          <div class="detail-body">
+            <div class="two-col">
+              <div class="mini-card"><h3>Regole rapide</h3><ul><li><strong>2:</strong> ultima cifra pari.</li><li><strong>3:</strong> somma delle cifre multipla di 3.</li><li><strong>4:</strong> ultime due cifre multiple di 4.</li><li><strong>5:</strong> ultima cifra 0 oppure 5.</li><li><strong>6:</strong> divisibile sia per 2 sia per 3.</li></ul></div>
+              <div class="mini-card"><h3>Per il 7</h3><p>Conviene eseguire la divisione o riconoscere un prodotto:</p><p>\(35=5\cdot7\), \(105=15\cdot7\), \(210=30\cdot7\).</p><p>Invece 60 non è multiplo di 7.</p></div>
+            </div>
+            <p class="dsa-only box"><strong>Strategia DSA/BES:</strong> controlla una colonna alla volta. Per esempio, cerca prima tutti i numeri divisibili per 2, poi tutti quelli divisibili per 3.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="exercise" id="es3">
+        <div class="kicker">Esercizio 3 · Operazioni con le frazioni</div>
+        <h2>Calcolare rispettando priorità e segni</h2>
+        <div class="two-col">
+          <div class="mini-card">
+            <h3>a) Prodotto e divisione</h3>
+            <div class="math-block" data-fallback="(2/3 × 9/8) : 5/4 = 3/5">
+              \[
+              \left(\frac{2}{3}\cdot\frac{9}{8}\right):\frac{5}{4}
+              =\frac{3}{4}\cdot\frac{4}{5}
+              =\boxed{\frac{3}{5}}
+              \]
+            </div>
+            <ol class="steps"><li>Semplifica il prodotto: \(\frac{2}{3}\cdot\frac{9}{8}=\frac{3}{4}\).</li><li>Dividere per una frazione significa moltiplicare per il suo reciproco.</li></ol>
+          </div>
+          <div class="mini-card">
+            <h3>b) Differenze e divisione</h3>
+            <div class="math-block" data-fallback="(1/7 - 1/5) : (2/3 - 4/7) = -3/5">
+              \[
+              \left(\frac{1}{7}-\frac{1}{5}\right):\left(\frac{2}{3}-\frac{4}{7}\right)
+              =\left(-\frac{2}{35}\right):\frac{2}{21}
+              \]
+              \[
+              =-\frac{2}{35}\cdot\frac{21}{2}=\boxed{-\frac{3}{5}}
+              \]
+            </div>
+            <p class="verbal"><strong>Lettura:</strong> calcoliamo prima le due parentesi; poi moltiplichiamo la prima frazione per il reciproco della seconda.</p>
+          </div>
+          <div class="mini-card">
+            <h3>c) Sottrarre un negativo</h3>
+            <div class="math-block" data-fallback="-4/5 - (-3/4) = -1/20">
+              \[
+              -\frac{4}{5}-\left(-\frac{3}{4}\right)
+              =-\frac{4}{5}+\frac{3}{4}
+              =-\frac{16}{20}+\frac{15}{20}
+              =\boxed{-\frac{1}{20}}
+              \]
+            </div>
+            <p><strong>Punto delicato:</strong> sottrarre un numero negativo equivale ad aggiungere il suo opposto.</p>
+          </div>
+          <div class="mini-card">
+            <h3>d) Espressione completa</h3>
+            <div class="math-block" data-fallback="[4 + (4/3 - 1/6) : (11/18 - 1) - 4/5] × 15/10 = 3/10">
+              \[
+              \left[4+\left(\frac{4}{3}-\frac{1}{6}\right):\left(\frac{11}{18}-1\right)-\frac{4}{5}\right]\cdot\frac{15}{10}
+              \]
+            </div>
+            <ol class="steps">
+              <li>\(\frac{4}{3}-\frac{1}{6}=\frac{8}{6}-\frac{1}{6}=\frac{7}{6}\).</li>
+              <li>\(\frac{11}{18}-1=\frac{11}{18}-\frac{18}{18}=-\frac{7}{18}\).</li>
+              <li>\(\frac{7}{6}:\left(-\frac{7}{18}\right)=\frac{7}{6}\cdot\left(-\frac{18}{7}\right)=-3\).</li>
+              <li>La parentesi quadra vale \(4-3-\frac{4}{5}=1-\frac{4}{5}=\frac{1}{5}\).</li>
+              <li>\(\frac{1}{5}\cdot\frac{15}{10}=\boxed{\frac{3}{10}}\).</li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <article class="exercise" id="es4">
+        <div class="kicker">Esercizio 4 · Proprietà delle potenze</div>
+        <h2>Semplificare prima di calcolare</h2>
+        <div class="two-col">
+          <div class="mini-card"><h3>a) Esponente zero</h3><div class="math-block">\[\left(\frac{1}{5}\right)^0=\boxed{1}\]</div><p>Ogni numero diverso da zero elevato a zero vale 1.</p></div>
+          <div class="mini-card"><h3>b) Esponente negativo</h3><div class="math-block">\[4^{-2}=\frac{1}{4^2}=\boxed{\frac{1}{16}}\]</div><p>L’esponente negativo fa prendere il reciproco.</p></div>
+          <div class="mini-card"><h3>c) Stesso esponente</h3><div class="math-block">\[\left(-\frac{1}{3}\right)^3\cdot\left(\frac{3}{4}\right)^3=\left(-\frac{1}{4}\right)^3=\boxed{-\frac{1}{64}}\]</div><p>Con lo stesso esponente possiamo prima moltiplicare le basi.</p></div>
+          <div class="mini-card"><h3>d) Stessa base</h3><div class="math-block">\[\left(\frac{2}{7}\right)^3\cdot\left(\frac{2}{7}\right)^5:\left(\frac{2}{7}\right)^6=\left(\frac{2}{7}\right)^{3+5-6}=\boxed{\frac{4}{49}}\]</div><p>Nel prodotto sommiamo gli esponenti; nella divisione li sottraiamo.</p></div>
+        </div>
+        <p class="verbal"><strong>Lettura della regola:</strong> se la base è la stessa, le moltiplicazioni sommano gli esponenti e le divisioni li sottraggono. La base non cambia.</p>
+      </article>
+
+      <article class="exercise" id="es5">
+        <div class="kicker">Esercizio 5 · Dal testo all’equazione</div>
+        <h2>Il doppio dell’opposto</h2>
+        <p class="prompt">Il doppio dell’opposto di un numero è uguale ai \(\frac{4}{5}\) di \(\frac{15}{8}\). Di quale numero si tratta?</p>
+        <details class="solution">
+          <summary>Apri lo svolgimento</summary>
+          <div class="detail-body">
+            <ol class="steps">
+              <li>Chiamiamo \(x\) il numero. Il suo opposto è \(-x\).</li>
+              <li>Il doppio dell’opposto è \(2(-x)=-2x\).</li>
+              <li>Calcoliamo il secondo membro: \(\frac{4}{5}\cdot\frac{15}{8}=\frac{3}{2}\).</li>
+              <li>Risolviamo \(-2x=\frac{3}{2}\): dividendo per \(-2\), otteniamo \(x=-\frac{3}{4}\).</li>
+            </ol>
+            <div class="math-block">\[-2x=\frac{3}{2}\quad\Longrightarrow\quad x=\frac{3}{2}:\left(-2\right)=\boxed{-\frac{3}{4}}\]</div>
+            <div class="box"><strong>Controllo:</strong> l’opposto di \(-\frac{3}{4}\) è \(\frac{3}{4}\); il suo doppio è \(\frac{3}{2}\), proprio come \(\frac{4}{5}\) di \(\frac{15}{8}\).</div>
+          </div>
+        </details>
+      </article>
+
+      <article class="exercise" id="es6">
+        <div class="kicker">Esercizio 6 · Geometria</div>
+        <h2>Il cateto mancante</h2>
+        <p class="prompt">In un triangolo rettangolo l’ipotenusa misura 10 cm e un cateto misura 8 cm. Quanto misura il secondo cateto?</p>
+        <details class="solution">
+          <summary>Apri lo svolgimento</summary>
+          <div class="detail-body">
+            <ol class="steps">
+              <li>Indichiamo con \(c\) il cateto incognito. Per Pitagora: \(8^2+c^2=10^2\).</li>
+              <li>Isoliamo il quadrato del cateto: \(c^2=10^2-8^2=100-64=36\).</li>
+              <li>La lunghezza è positiva: \(c=\sqrt{36}=6\).</li>
+            </ol>
+            <div class="math-block">\[c=\sqrt{10^2-8^2}=\sqrt{36}=\boxed{6\ \text{cm}}\]</div>
+            <p class="verbal"><strong>Lettura:</strong> il cateto è la radice quadrata della differenza tra il quadrato dell’ipotenusa e il quadrato dell’altro cateto.</p>
+            <p><strong>Controllo:</strong> \(6^2+8^2=36+64=100=10^2\).</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="exercise" id="es7">
+        <div class="kicker">Esercizio 7 · Percentuali</div>
+        <h2>Completare la tabella dei 20 studenti</h2>
+        <p class="prompt">5 studenti scelgono Letteratura, 2 scelgono Storia e il 65% sceglie Attualità.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Tabella completata</caption>
+            <thead><tr><th>Tipo di tema</th><th>Temi svolti</th><th>Percentuale</th></tr></thead>
+            <tbody><tr><th>Letteratura</th><td>5</td><td class="yes">25%</td></tr><tr><th>Storia</th><td>2</td><td class="yes">10%</td></tr><tr><th>Attualità</th><td class="yes">13</td><td>65%</td></tr><tr><th>Totale</th><td>20</td><td>100%</td></tr></tbody>
+          </table>
+        </div>
+        <details class="solution">
+          <summary>Apri lo svolgimento</summary>
+          <div class="detail-body">
+            <ol class="steps">
+              <li>Letteratura: \(\frac{5}{20}\cdot100=25\%\).</li>
+              <li>Storia: \(\frac{2}{20}\cdot100=10\%\).</li>
+              <li>Attualità: \(65\%\) di 20 è \(\frac{65}{100}\cdot20=13\) studenti.</li>
+              <li>Controllo delle frequenze: \(5+2+13=20\). Controllo delle percentuali: \(25\%+10\%+65\%=100\%\).</li>
+            </ol>
+            <p class="dsa-only box"><strong>Scorciatoia utile:</strong> in un gruppo di 20 persone, ogni persona rappresenta il 5%, perché \(100\%:20=5\%\).</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="exercise" id="es8">
+        <div class="kicker">Esercizio 8 · Ragionamento</div>
+        <h2>Individuare l’affermazione falsa</h2>
+        <div class="answer-line">La risposta falsa è la <strong>c</strong>: «Tra le potenze del numero 3 vi sono anche numeri pari».</div>
+        <details class="solution">
+          <summary>Apri la verifica delle quattro frasi</summary>
+          <div class="detail-body">
+            <ol type="a">
+              <li><strong>Vera.</strong> Ogni multiplo di 12 si scrive \(12k=6(2k)\), quindi è anche multiplo di 6.</li>
+              <li><strong>Vera.</strong> Il prodotto di numeri dispari è dispari; dunque una potenza con base dispari resta dispari.</li>
+              <li><strong>Falsa.</strong> Le potenze di 3, come \(1,3,9,27,81,\ldots\), sono tutte dispari.</li>
+              <li><strong>Vera.</strong> I divisori positivi di 8 sono \(1,2,4,8\), e dividono tutti anche 16.</li>
+            </ol>
+            <div class="box warm"><strong>Metodo:</strong> per smentire una frase universale basta un controesempio; per confermarla serve una ragione valida per tutti i casi indicati.</div>
+          </div>
+        </details>
+      </article>
+
+      <section class="intro" aria-labelledby="bilancio">
+        <div class="kicker">Chiusura</div>
+        <h2 id="bilancio">Il mio bilancio</h2>
+        <p>Scegli un esercizio che ora sapresti spiegare a un compagno e uno che vuoi riprovare senza guardare. Per il secondo, scrivi il primo passaggio corretto: è il tuo punto di ripartenza.</p>
+        <div class="two-col">
+          <div class="box"><strong>So spiegare:</strong><br><br>................................................................................</div>
+          <div class="box warm"><strong>Voglio riprovare:</strong><br><br>................................................................................</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-card">
+      <p><strong>Fonte usata:</strong> “TestIngresso.pdf”, prova di ingresso di matematica in 8 esercizi, conservata nella cartella verifiche della classe.</p>
+      <p><strong>Controllo risposte:</strong> completato con calcoli indipendenti e controlli inversi. <strong>Data revisione:</strong> 25 settembre 2026. <strong>Stato:</strong> pronto per la correzione in classe.</p>
+      <p><strong>Nota:</strong> il test originale non riporta punteggi; questa correzione non attribuisce voti e usa gli errori come indicazioni per il recupero dei prerequisiti.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const dark = document.getElementById('dark-toggle');
+      const dsa = document.getElementById('dsa-toggle');
+      const status = document.getElementById('status');
+      const solutions = Array.from(document.querySelectorAll('details.solution'));
+
+      function toggleMode(button, className, activeLabel, inactiveLabel) {
+        const active = body.classList.toggle(className);
+        button.setAttribute('aria-pressed', String(active));
+        button.textContent = active ? activeLabel : inactiveLabel;
+      }
+
+      dark.addEventListener('click', function () {
+        toggleMode(dark, 'dark-mode', 'Tema chiaro', 'DARK');
+        status.textContent = body.classList.contains('dark-mode') ? 'Tema scuro attivato.' : 'Tema chiaro attivato.';
+      });
+
+      dsa.addEventListener('click', function () {
+        toggleMode(dsa, 'dsa-mode', 'Vista standard', 'DSA/BES');
+        status.textContent = body.classList.contains('dsa-mode') ? 'Modalità DSA/BES attivata.' : 'Vista standard attivata.';
+      });
+
+      document.getElementById('open-all').addEventListener('click', function () {
+        solutions.forEach(function (item) { item.open = true; });
+        status.textContent = 'Tutti gli svolgimenti sono aperti.';
+      });
+
+      document.getElementById('close-all').addEventListener('click', function () {
+        solutions.forEach(function (item) { item.open = false; });
+        status.textContent = 'Gli svolgimenti sono nascosti.';
+      });
+
+      document.getElementById('print-page').addEventListener('click', function () {
+        window.print();
+      });
+    }());
+  </script>
+</body>
+</html>
